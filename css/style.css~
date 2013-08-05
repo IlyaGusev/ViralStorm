@@ -1,9 +1,41 @@
+html, body {
+    margin: 0;
+    padding: 0;
+	background-color: white;
+}
+
 #start-screen{
+	background-color: red;
+	margin: auto;
+    width: 512px;
+    height: 480px;
+	border: 1px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	z-index: 1;
 	display: block;
+    text-align: center;
 }
-#help-screen{
-	display: none;
+#help-screen, #authors-screen{
+	text-align: center;
+	margin: auto;
+    width: 512px;
+    height: 480px;
+	position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+	background-color: rgba(0, 0, 0, .5);
+	color: white;
+	display:none;
+	z-index: 2;
 }
-#autors-screen{
-	display: none;
+#authors-screen button, #help-screen button {
+	position: absolute;
+	bottom:20px;
+	right:20px;
 }
