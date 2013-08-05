@@ -3,9 +3,10 @@ function MainScreen(width, height){
     this.width = width;
     this.height = height;
     this.enemies = [];
-    this.init();
     this.pause = false;
     this.shop = false;
+	
+    this.init();
 }
 
 
@@ -17,15 +18,25 @@ MainScreen.prototype.init = function(){
     this.ctx = canvas.getContext('2d');
 
     this.lastTime = Date.now();
-    loop();
+    this.loop();
 }
 
 MainScreen.prototype.loop = function(){
     this.curTime = Date.now();
-    if (!pause && !shop)
-    {
-        update (curTime - lastTime);
-        render ();
-        window.requestAnimationFramerame (loop);
+    var self = this;
+    requestAnimationFrame(function(){
+	self.loop();
+    });
+    if (!this.pause && !this.shop){
+        this.update (this.curTime - this.lastTime);
+        this.render ();
     }
+}
+
+MainScreen.prototype.update = function(difftime){
+
+}
+
+MainScreen.prototype.render = function(){
+
 }

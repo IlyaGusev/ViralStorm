@@ -48,7 +48,6 @@ canvas{
 	z-index: 2;
 }
 #authors-screen button, #help-screen button {
-    font-size: 30;
 	position: absolute;
 	bottom:30px;
 }
