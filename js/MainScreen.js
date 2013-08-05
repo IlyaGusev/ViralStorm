@@ -26,5 +26,6 @@ MainScreen.prototype.loop = function(){
     {
         update (curTime - lastTime);
         render ();
+        window.requestAnimationFramerame (loop);
     }
 }
