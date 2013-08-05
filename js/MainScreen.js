@@ -24,6 +24,8 @@ MainScreen.prototype.init = function(){
 MainScreen.prototype.loop = function(){
     this.curTime = Date.now();
     var self = this;
+    this.cell = new Cell(this.width/2-50, this.height/2-50, 100, 100);
+    this.cell.draw(this.ctx);
     requestAnimationFrame(function(){
 	self.loop();
     });
@@ -38,5 +40,4 @@ MainScreen.prototype.update = function(difftime){
 }
 
 MainScreen.prototype.render = function(){
-
 }
