@@ -20,6 +20,10 @@ var hide_help = function() {
 	document.getElementById ("help-screen").style.display = 'none';
 }
 
+var start = function(){
+
+}
+
 if (bStart.addEventListener)
 	bStart.addEventListener ("click", start, false);
 else if (bStart.attachEvent)
