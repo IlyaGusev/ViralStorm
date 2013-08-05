@@ -34,7 +34,7 @@ MainScreen.prototype.loop = function(){
 }
 
 MainScreen.prototype.update = function(difftime){
-
+     for (var i = 0; i < 5; ++i);
 }
 
 MainScreen.prototype.render = function(){
