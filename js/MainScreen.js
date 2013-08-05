@@ -6,15 +6,9 @@ function MainScreen(width, height){
     this.cell;
     this.enemies = [];
 
-    this.wait();
+    this.init();
 }
 MainScreen.prototype = {
-    wait : function(){
-        var self = this;
-        window.onload = function() {
-            self.init();
-        };
-    },
     init : function(){
         var canvas = document.createElement('canvas');
         document.body.appendChild(canvas);

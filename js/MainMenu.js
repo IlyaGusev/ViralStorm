@@ -1,3 +1,5 @@
+"use strict";
+
 var bStart = document.getElementById('start');
 var bAuthors = document.getElementById('authors');
 var bHelp = document.getElementById('help');
@@ -20,9 +22,19 @@ var hide_help = function() {
 	document.getElementById ("help-screen").style.display = 'none';
 }
 
-var start = function(){
-
+var hide_menu = function() {
+    document.getElementById ("start-screen").style.display = 'none';
 }
+
+var mainscreen;
+var start = function(){
+    mainscreen = new MainScreen(840, 840);
+}
+
+if (bStart.addEventListener)
+    bStart.addEventListener ("click", hide_menu, false);
+else if (bStart.attachEvent)
+    bStart.attachEvent ("onclick", start);
 
 if (bStart.addEventListener)
 	bStart.addEventListener ("click", start, false);

@@ -1,3 +1,5 @@
+"use strict";
+
 function Enemy(x, y, width, height, orientation){
     this.orientation = orientation;
     this.height = height;

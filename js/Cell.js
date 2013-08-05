@@ -1,3 +1,5 @@
+"use strict";
+
 function Cell(x, y, width, height){
     this.x = x;
     this.y = y;
