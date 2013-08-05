@@ -1,42 +1,31 @@
 "use strict";
 
-function Enemy(x, y, width, height, orientation){
-    this.orientation = orientation;
+function Enemy(x, y, width, height){
     this.height = height;
     this.width = width;
     this.x=x;
     this.y=y;
-
+    this.sprite1 = new Image();
+    this.sprite2 = new Image();
+    this.sprite1.src='img/virus1/virus1_1.png';
+    this.sprite2.src='img/virus1/virus1_2.png';
+    this.timer = 0;
+    this.currentSprite = this.sprite1;
 }
 Enemy.prototype = {
     draw : function(ctx){
-        ctx.fillStyle = "black";
-        if (this.orientation == 0)
-            ctx.fillRect(this.x, this.y, this.height, this.width);
-        if (this.orientation == 1)
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-        if (this.orientation == 2)
-            ctx.fillRect(this.x, this.y, this.height, this.width);
-        if (this.orientation == 3)
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-    },
-    render: function(ctx){
-        ctx.fillStyle = "black";
-        if (this.orientation == 0){
-            this.y+=3;
-            ctx.fillRect(this.x, this.y, this.height, this.width);
+        if (this.timer>10){
+            if (this.currentSprite==this.sprite1){
+                this.currentSprite = this.sprite2;
+            }
+            else{
+                this.currentSprite = this.sprite1;
+            }
+            this.timer=0;
         }
-        if (this.orientation == 1){
-            this.x-=3;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
+        else{
+            this.timer++;
         }
-        if (this.orientation == 2){
-            this.y-=3;
-            ctx.fillRect(this.x, this.y, this.height, this.width);
-        }
-        if (this.orientation == 3){
-            this.x+=3;
-            ctx.fillRect(this.x, this.y, this.width, this.height);
-        }
+        ctx.drawImage(this.currentSprite, this.x, this.y, this.width, this.height);
     }
 };

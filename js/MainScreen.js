@@ -26,6 +26,7 @@ MainScreen.prototype.loop = function(){
     var self = this;
     this.cell = new Cell(this.width/2-50, this.height/2-50, 100, 100);
     this.cell.draw(this.ctx);
+    this.enemies.push(new Enemy(30, 30, 24, 29));
     requestAnimationFrame(function(){
 	self.loop();
     });
@@ -40,4 +41,7 @@ MainScreen.prototype.update = function(difftime){
 }
 
 MainScreen.prototype.render = function(){
+    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.cell.draw(this.ctx);
+    this.enemies[0].draw(this.ctx);
 }
