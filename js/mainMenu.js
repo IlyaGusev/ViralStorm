@@ -16,7 +16,7 @@ var show_help = function() {
 	document.getElementById ("help-screen").style.display = 'block';
 }
 
-var hide_authors = function() {
+var hide_help = function() {
 	document.getElementById ("help-screen").style.display = 'none';
 }
 
