@@ -1,0 +1,9 @@
+#start-screen{
+	display: block;
+}
+#help-screen{
+	display: none;
+}
+#autors-screen{
+	display: none;
+}
