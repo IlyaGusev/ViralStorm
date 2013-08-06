@@ -1,4 +1,5 @@
 "use strict";
+
 function MainScreen(width, height){
     this.width = width;
     this.height = height;
@@ -20,7 +21,7 @@ MainScreen.prototype.init = function(){
     this.lastTime = Date.now();
 
     this.cell = new Cell(this.width/2-50, this.height/2-50, 100, 100);
-    this.enemies.push(new Enemy(30, 30, 60, 0));
+    this.enemies.push(new Virus(30, 30, 60));
 
     this.loop();
 }
@@ -39,12 +40,11 @@ MainScreen.prototype.loop = function(){
 }
 
 MainScreen.prototype.update = function(difftime){
-
+    this.enemies[0].rotation+=5;
 }
 
 MainScreen.prototype.render = function(difftime){
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.cell.draw(this.ctx);
     this.enemies[0].draw(this.ctx, difftime);
-    this.enemies[0].rotation+=5;
 }

@@ -36,6 +36,14 @@ function shuffle(array) {
     return true;
 }
 
+function extend(Child, Parent) {
+    var F = function() { };
+    F.prototype = Parent.prototype;
+    Child.prototype = new F();
+    Child.prototype.constructor = Child;
+    Child.superclass = Parent.prototype;
+}
+
 Number.prototype.degree = function () {
     return this * Math.PI / 180;
 };

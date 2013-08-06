@@ -1,5 +1,6 @@
 //From http://habrahabr.ru/post/184666/
 "use strict";
+
 (function() {
     var resourceCache = {};
     var readyCallbacks = [];
