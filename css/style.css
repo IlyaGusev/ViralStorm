@@ -50,4 +50,5 @@ canvas{
 #authors-screen button, #help-screen button {
 	position: absolute;
 	bottom:30px;
+    right:20px;
 }

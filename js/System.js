@@ -36,7 +36,7 @@ function shuffle(array) {
     return true;
 }
 
-function extend(Child, Parent) {
+function inherit(Child, Parent) {
     var F = function() { };
     F.prototype = Parent.prototype;
     Child.prototype = new F();

@@ -29,6 +29,7 @@ var hide_menu = function() {
 var mainscreen;
 var start_click = function(){
     resources.load("img/virus1.png");
+    resources.load("img/bacteria1.png");
     resources.load(["img/cell/cell_base.png",
         "img/cell/goldji1.png",
         "img/cell/goldji2.png",

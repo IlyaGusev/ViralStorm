@@ -5,8 +5,5 @@ function Enemy(x, y, rotation){
     this.rotation = rotation || 0;
 }
 Enemy.prototype = {
-    constructor: Enemy,
-    draw : function(ctx, dt){
-    }
+    constructor: Enemy
 };
-

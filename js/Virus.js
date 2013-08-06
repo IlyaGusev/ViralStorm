@@ -3,9 +3,9 @@
 function Virus(x, y, rotation, type){
     Virus.superclass.constructor.call(this, x, y, rotation);
     this.type = type ||0;
-    this.sprite=new Sprite('img/virus1.png', [0,0], [26,29], 10, [0,1]);
+    this.sprite=new Sprite('img/virus1.png', [0,0], [26,29], 10, [0, 1, 2, 1]);
 }
-extend(Virus, Enemy);
+inherit(Virus, Enemy);
 
 Virus.prototype = {
     draw : function(ctx, dt){
