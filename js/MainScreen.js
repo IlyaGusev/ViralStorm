@@ -5,7 +5,7 @@ function MainScreen(width, height){
     this.enemies = [];
     this.pause = false;
     this.shop = false;
-	
+
     this.init();
 }
 
@@ -18,30 +18,33 @@ MainScreen.prototype.init = function(){
     this.ctx = canvas.getContext('2d');
 
     this.lastTime = Date.now();
+
+    this.cell = new Cell(this.width/2-50, this.height/2-50, 100, 100);
+    this.enemies.push(new Enemy(30, 30, 60, 0));
+
     this.loop();
 }
 
 MainScreen.prototype.loop = function(){
-    this.curTime = Date.now();
     var self = this;
-    this.cell = new Cell(this.width/2-50, this.height/2-50, 100, 100);
-    this.cell.draw(this.ctx);
-    this.enemies.push(new Enemy(30, 30, 24, 29));
     requestAnimationFrame(function(){
-	self.loop();
+	    self.loop();
     });
+    this.curTime = Date.now();
     if (!this.pause && !this.shop){
         this.update (this.curTime - this.lastTime);
-        this.render ();
+        this.render (this.curTime - this.lastTime);
     }
+    this.lastTime = this.curTime;
 }
 
 MainScreen.prototype.update = function(difftime){
 
 }
 
-MainScreen.prototype.render = function(){
+MainScreen.prototype.render = function(difftime){
     this.ctx.clearRect(0, 0, this.width, this.height);
     this.cell.draw(this.ctx);
-    this.enemies[0].draw(this.ctx);
+    this.enemies[0].draw(this.ctx, difftime);
+    this.enemies[0].rotation+=5;
 }

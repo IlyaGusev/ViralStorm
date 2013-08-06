@@ -35,3 +35,7 @@ function shuffle(array) {
     }
     return true;
 }
+
+Number.prototype.degree = function () {
+    return this * Math.PI / 180;
+};

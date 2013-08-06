@@ -1,31 +1,15 @@
 "use strict";
 
-function Enemy(x, y, width, height){
-    this.height = height;
-    this.width = width;
+function Enemy(x, y, rotation, type){
+    this.type= type||0;
     this.x=x;
     this.y=y;
-    this.sprite1 = new Image();
-    this.sprite2 = new Image();
-    this.sprite1.src='img/virus1/virus1_1.png';
-    this.sprite2.src='img/virus1/virus1_2.png';
-    this.timer = 0;
-    this.currentSprite = this.sprite1;
+    this.rotation = rotation || 0;
+    this.sprite=new Sprite('img/virus1.png', [0,0], [26,29], 10, [0,1]);
 }
 Enemy.prototype = {
-    draw : function(ctx){
-        if (this.timer>10){
-            if (this.currentSprite==this.sprite1){
-                this.currentSprite = this.sprite2;
-            }
-            else{
-                this.currentSprite = this.sprite1;
-            }
-            this.timer=0;
-        }
-        else{
-            this.timer++;
-        }
-        ctx.drawImage(this.currentSprite, this.x, this.y, this.width, this.height);
+    draw : function(ctx, dt){
+        this.sprite.update(dt);
+        this.sprite.render(ctx, [this.x, this.y], this.rotation);
     }
 };
