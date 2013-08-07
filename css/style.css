@@ -18,7 +18,7 @@ html, body {
 }
 
 #start-screen{
-	background-color: red;
+	background-color: darkblue;
 	margin: auto;
     width: 840px;
     height: 840px;
@@ -51,4 +51,21 @@ html, body {
 	position: absolute;
 	bottom:30px;
     	right:20px;
+}
+
+#game-over-screen{
+    background-color: red;
+    color: yellow;
+    margin: auto;
+    width: 840px;
+    height: 840px;
+    border: 1px solid black;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 1;
+    display: none;
+    text-align: center;
 }

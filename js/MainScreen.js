@@ -52,10 +52,9 @@ MainScreen.prototype.loop = function(){
         this.render (this.curTime - this.lastTime);
     }
     if (this.shop)
-    {
-        console.log ("SHOP");
         show_shop();
-    }
+    if (this.gameover)
+        this.game_over();
     this.lastTime = this.curTime;
 }
 
@@ -74,5 +73,20 @@ MainScreen.prototype.update = function(difftime){
         this.enemies[i].update(difftime);
         if (!this.enemies[i].alive) {this.enemies.splice(i, 1);--i;}
     }
-    if (this.cell.hp <= 0) console.log ("GAME OVER");
+    if (this.cell.hp <= 0) this.gameover = true;
+}
+
+MainScreen.prototype.game_over = function () {
+    document.getElementById('game-over-screen').style.display = 'block';
+    var arr = document.body.innerHTML = document.body.innerHTML.split("\n");
+    arr.splice (-1)
+    document.body.innerHTML = arr.join("\n");
+    console.log (document.body.innerHTML);
+    var self = this;
+    window.setTimeout(self.to_menu, 2000);
+}
+
+MainScreen.prototype.to_menu = function () {
+    document.getElementById('game-over-screen').style.display = 'none';
+    document.getElementById('start-screen').style.display = 'block';
 }
