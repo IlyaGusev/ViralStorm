@@ -32,23 +32,23 @@ html, body {
 	display: block;
     text-align: center;
 }
-#help-screen, #authors-screen{
+#help-screen, #authors-screen, #new-wave, #shop {
 	text-align: center;
 	margin: auto;
-    width: 840px;
-    height: 840px;
+    width: 800px;
+    height: 800px;
 	position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
 	background-color: rgba(0, 0, 0, .5);
 	color: white;
 	display:none;
 	z-index: 2;
 }
-#authors-screen button, #help-screen button {
+#authors-screen button, #help-screen button, #shop next-wave {
 	position: absolute;
 	bottom:30px;
-    right:20px;
+    	right:20px;
 }

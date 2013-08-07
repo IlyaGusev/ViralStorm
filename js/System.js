@@ -36,6 +36,11 @@ function shuffle(array) {
     return true;
 }
 
+function abstractMethod ()
+{
+    throw new Error ("this method is abstract");
+}
+
 function inherit(Child, Parent) {
     var F = function() { };
     F.prototype = Parent.prototype;
