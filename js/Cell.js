@@ -15,9 +15,9 @@ function Cell(x, y){
 }
 Cell.prototype = {
     draw : function(ctx){
-        this.sprite.render(ctx, pos);
+        this.sprite.render(ctx, this.pos);
         for (var i=0; i<4; i++)  {
-            this.buildings[i].render(ctx, pos);
+            this.buildings[i].render(ctx, this.pos);
         }
     }
 };
