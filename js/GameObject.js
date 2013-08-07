@@ -1,8 +1,8 @@
 "use strict";
 
-function GameObject (position, sprite)
+function GameObject (pos, sprite)
 {
-    this.position = position;
+    this.position = pos;
     this.sprite = sprite;
 }
 

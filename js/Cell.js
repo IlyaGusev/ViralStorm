@@ -1,14 +1,9 @@
 "use strict";
 
-function Cell(x, y, width, height){
-    this.x = x;
-    this.y = y;
-    this.height = height;
-    this.width = width;
+function Cell(x, y){
+    this.pos = [x, y];
+    this.hp = this.maxHp = 50;
+    this.armor = this.maxArmor = 0;
+    this.buildings = [];
+    this.sprite = {size: [100, 100]};
 }
-Cell.prototype = {
-    draw : function(ctx){
-        ctx.fillStyle = "orange";
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }
-};

@@ -1,5 +1,10 @@
 "use strict";
 
-function Enemy(position, sprite){
-    GameObject.apply (this, arguments);
+function Enemy(x, y, rotation){
+    this.pos = [x, y];
+    this.rotation = rotation || 0;
 }
+
+Enemy.prototype = {
+    constructor: Enemy
+};
