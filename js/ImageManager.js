@@ -63,5 +63,6 @@ var start_click = function(){
     resources.load("img/virus2.png");
     resources.load("img/bacteria1.png");
     resources.load("img/cell.png");
+    resources.load("img/bullet1.png");
     resources.onReady(start);
 }
