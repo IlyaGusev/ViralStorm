@@ -1,12 +1,3 @@
-"use strict"
-
-
-Virus.prototype = {
-    draw : function(ctx, dt){
-        this.sprite.update(dt);
-        this.sprite.render(ctx, this.pos, this.rotation);
-    }
-};
 "use strict";
 
 function Virus (x, y, rotation, type) {

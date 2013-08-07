@@ -2,8 +2,6 @@
 
 function Cell(x, y){
     this.pos = [x, y];
-    this.height = height;
-    this.width = width;
     this.hp = this.maxHp = 50;
     this.armor = this.maxArmor = 0;
     this.maxHp;
