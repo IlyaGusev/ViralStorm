@@ -4,7 +4,7 @@ html, body {
 	background-color: white;
 }
 
-canvas{
+#main-screen{
     margin: auto;
     border: 1px solid black;
     position: absolute;

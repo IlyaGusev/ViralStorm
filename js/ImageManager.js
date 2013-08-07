@@ -58,3 +58,10 @@
         isReady: isReady
     };
 })();
+var start_click = function(){
+    resources.load("img/virus1.png")
+    resources.load("img/virus2.png");
+    resources.load("img/bacteria1.png");
+    resources.load("img/cell.png");
+    resources.onReady(start);
+}

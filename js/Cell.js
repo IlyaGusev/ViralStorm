@@ -10,11 +10,11 @@ function Cell(x, y, width, height){
     this.armor;
     this.maxArmor;
     this.buildings = [];
-    this.sprite = new Sprite('img/cell/cell_base.png', [0, 0], [100,100]);
-    this.buildings.push(new Sprite('img/cell/border3.png', [0, 0], [100,100]));
-    this.buildings.push(new Sprite('img/cell/goldji3.png', [0, 0], [100,100]));
-    this.buildings.push(new Sprite('img/cell/mitohondria3.png', [0, 0], [100,100]));
-    this.buildings.push(new Sprite('img/cell/ribosome3.png', [0, 0], [100,100]));
+    this.sprite = new Sprite('img/cell.png', [0, 0], [102,100]);
+    this.buildings.push(new Sprite('img/cell.png', [306, 0], [102,100]));
+    this.buildings.push(new Sprite('img/cell.png', [612, 0], [102,100]));
+    this.buildings.push(new Sprite('img/cell.png', [918, 0], [102,100]));
+    this.buildings.push(new Sprite('img/cell.png', [1224, 0], [102,100]));
 }
 Cell.prototype = {
     draw : function(ctx){

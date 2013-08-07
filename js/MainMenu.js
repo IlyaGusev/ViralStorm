@@ -27,24 +27,6 @@ var hide_menu = function() {
 }
 
 var mainscreen;
-var start_click = function(){
-    resources.load("img/virus1.png");
-    resources.load("img/bacteria1.png");
-    resources.load(["img/cell/cell_base.png",
-        "img/cell/goldji1.png",
-        "img/cell/goldji2.png",
-        "img/cell/goldji3.png",
-        "img/cell/mitohondria1.png",
-        "img/cell/mitohondria2.png",
-        "img/cell/mitohondria3.png",
-        "img/cell/ribosome1.png",
-        "img/cell/ribosome2.png",
-        "img/cell/ribosome3.png",
-        "img/cell/border1.png",
-        "img/cell/border2.png",
-        "img/cell/border3.png"]);
-    resources.onReady(start);
-}
 var start = function(){
     mainscreen = new MainScreen(840, 840);
 }

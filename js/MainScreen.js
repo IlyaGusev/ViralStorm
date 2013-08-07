@@ -10,17 +10,17 @@ function MainScreen(width, height){
     this.init();
 }
 
-
 MainScreen.prototype.init = function(){
     var canvas = document.createElement('canvas');
     document.body.appendChild(canvas);
+    canvas.id = 'main-screen';
     canvas.height = this.height;
     canvas.width = this.width;
     this.ctx = canvas.getContext('2d');
 
     this.lastTime = Date.now();
 
-    this.cell = new Cell(this.width/2-50, this.height/2-50, 100, 100);
+    this.cell = new Cell(this.width/2, this.height/2, 102, 100);
     this.enemies.push(new Virus(30, 30, 0));
     this.enemies.push(new Bacteria(80, 30, 0));
 

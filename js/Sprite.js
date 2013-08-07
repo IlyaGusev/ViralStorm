@@ -48,7 +48,7 @@ Sprite.prototype.render = function(ctx, pos, rotation) {
     }
 
     ctx.save();
-    ctx.translate(pos[0]+(this.size[0]/2), pos[1]+(this.size[1]/2));
+    ctx.translate(pos[0], pos[1]);
     ctx.rotate(rotation.degree());
     ctx.drawImage(resources.get(this.url),
         x, y,
