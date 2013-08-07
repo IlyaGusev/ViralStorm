@@ -1,7 +1,30 @@
-/**
- * Created with JetBrains WebStorm.
- * User: Eugeniy
- * Date: 05.08.13
- * Time: 19:39
- * To change this template use File | Settings | File Templates.
- */
+"use strict";
+
+function Metronome (period, delay) {
+    this.period = period;
+    this.time = 0;
+    this.delay = delay || 0;
+    this.tick = false;
+    this.start = false;
+}
+
+Metronome.prototype.update = function (dt) {
+    this.time += dt;
+    if (!this.start && (this.time >= this.delay))
+    {
+        this.start = true;
+        this.tick = true;
+        this.time -= this.delay;
+    }
+    if (this.start && (this.time >= this.period)) {
+        this.time -= this.period;
+        this.tick = true;
+    }
+};
+
+Metronome.prototype.getTick = function ()
+{
+    var b = this.tick;
+    this.tick = false;
+    return b;
+}

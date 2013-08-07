@@ -1,7 +1,18 @@
-/**
- * Created with JetBrains WebStorm.
- * User: Eugeniy
- * Date: 06.08.13
- * Time: 11:28
- * To change this template use File | Settings | File Templates.
- */
+"use strict";
+var shopscreen = document.getElementById ('shop');
+var b_nextwave = document.getElementById ('next-wave');
+
+function show_shop () {
+    shopscreen.style.display = "block";
+}
+
+function close_shop () {
+    shopscreen.style.display = "none";
+    mainscreen.wave_num++;
+    mainscreen.new_wave ();
+}
+
+if (b_nextwave.addEventListener)
+    b_nextwave.addEventListener ("click", close_shop, false);
+else if (b_nextwave.attachEvent)
+    b_nextwave.attachEvent ("onclick", close_shop);

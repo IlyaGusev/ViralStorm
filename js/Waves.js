@@ -1,7 +1,4 @@
-/**
- * Created with JetBrains WebStorm.
- * User: Eugeniy
- * Date: 05.08.13
- * Time: 23:29
- * To change this template use File | Settings | File Templates.
- */
+var waves = [
+    [["v_1", 1000, 3000]],
+    [["v_1", 2000, 5000], ["v_2", 5000, 10000]]
+];

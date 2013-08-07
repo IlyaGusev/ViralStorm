@@ -1,7 +1,11 @@
-/**
- * Created with JetBrains WebStorm.
- * User: Eugeniy
- * Date: 05.08.13
- * Time: 20:23
- * To change this template use File | Settings | File Templates.
- */
+"use strict";
+
+function GameObject (position, sprite)
+{
+    this.position = position;
+    this.sprite = sprite;
+}
+
+GameObject.prototype.update = abstractMethod;
+GameObject.prototype.render = abstractMethod;
+GameObject.prototype.calculateCollide = abstractMethod;
