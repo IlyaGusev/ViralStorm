@@ -44,13 +44,11 @@ MainScreen.prototype.new_wave_hide = function () {
 }
 
 MainScreen.prototype.loop = function(){
-    var self = this;
-    requestAnimationFrame(function(){
-	    self.loop();
-    });
     this.curTime = Date.now();
-    if (!this.pause && !this.shop){
-        this.update (this.curTime - this.lastTime);
+    this.update (this.curTime - this.lastTime);
+    if (!this.pause && !this.shop && !this.gameover){
+        var self = this;
+        requestAnimationFrame(function(){self.loop();});
         this.render (this.curTime - this.lastTime);
     }
     if (this.shop)
@@ -58,6 +56,7 @@ MainScreen.prototype.loop = function(){
         console.log ("SHOP");
         show_shop();
     }
+    this.lastTime = this.curTime;
 }
 
 MainScreen.prototype.render = function(difftime){
@@ -75,6 +74,5 @@ MainScreen.prototype.update = function(difftime){
         this.enemies[i].update(difftime);
         if (!this.enemies[i].alive) {this.enemies.splice(i, 1);--i;}
     }
-    if (this.cell.hp <= 45) console.log (this.cell.hp);
-    //if (this.cell.hp <= 0) console.log ("GAME OVER");
+    if (this.cell.hp <= 0) console.log ("GAME OVER");
 }
