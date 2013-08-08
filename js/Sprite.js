@@ -1,3 +1,4 @@
+//From http://habrahabr.ru/post/184666/
 "use strict";
 
 function Sprite(url, pos, size, speed, frames, dir, once) {
@@ -40,12 +41,10 @@ Sprite.prototype.render = function(ctx, pos, rotation) {
     var x = this.pos[0];
     var y = this.pos[1];
 
-    if(this.dir == 'vertical') {
+    if(this.dir == 'vertical')
         y += frame * this.size[1];
-    }
-    else {
+    else
         x += frame * this.size[0];
-    }
 
     ctx.save();
     ctx.translate(pos[0], pos[1]);

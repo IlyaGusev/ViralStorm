@@ -12,43 +12,6 @@ if (!window.requestAnimationFrame) {
     })();
 }
 
-Object.prototype.setProperty = function(object, add) {
-    if (add !== true) add = false;
-    for (var key in object) {
-        if (object.hasOwnProperty(key)) {
-            if (typeof this[key] !== 'undefined' || add) {
-                this[key] = object[key];
-            }
-        }
-    }
-    return this;
-};
-
-function shuffle(array) {
-    var len = array.length;
-    var i = len;
-    while (i--) {
-        var p = Math.floor(Math.random() * len);
-        var t = array[i];
-        array[i] = array[p];
-        array[p] = t;
-    }
-    return true;
-}
-
-function abstractMethod ()
-{
-    throw new Error ("this method is abstract");
-}
-
-function inherit(Child, Parent) {
-    var F = function() { };
-    F.prototype = Parent.prototype;
-    Child.prototype = new F();
-    Child.prototype.constructor = Child;
-    Child.superclass = Parent.prototype;
-}
-
 Number.prototype.degree = function () {
     return this * Math.PI / 180;
 };

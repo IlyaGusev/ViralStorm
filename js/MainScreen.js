@@ -4,12 +4,13 @@ function MainScreen(width, height){
     this.width = width;
     this.height = height;
     this.enemies = [];
-    this.pause = false;
-    this.shop = false;
-    this.gameover = false;
     this.ctx = null;
     this.mouse = null;
     this.wave_num = 0;
+
+    this.pause = false;
+    this.shop = false;
+    this.gameover = false;
 
     this.wave = new Wave();
     this.cell = new Cell (420, 420);
@@ -31,7 +32,7 @@ MainScreen.prototype.init = function () {
 
 MainScreen.prototype.new_wave = function () {
     document.getElementById("new-wave").style.display = "block";
-    document.getElementById("new-wave").innerHTML = "Wave " + this.wave_num;
+    document.getElementById("new-wave").innerHTML = "Wave " + (this.wave_num+1);
     var self = this;
     window.setTimeout(function() {self.new_wave_hide()}, 2000);
 }
@@ -81,6 +82,7 @@ MainScreen.prototype.update = function(difftime){
     for (var i = 0; i < this.enemies.length; ++i) {
         this.enemies[i].update(this.mouse, difftime);
         if (!this.enemies[i].alive) {
+            this.enemies[i]=null;
             this.enemies.splice(i, 1);
             --i;
         }

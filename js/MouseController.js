@@ -1,4 +1,6 @@
+//From https://github.com/vladkens/Planets
 "use strict";
+
 function MouseController(element) {
     this.element = null;
     this.pos     = [0,0];
