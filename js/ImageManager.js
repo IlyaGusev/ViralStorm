@@ -65,4 +65,6 @@ var start_click = function(){
     resources.load("img/cell.png");
     resources.load("img/bullet1.png");
     resources.onReady(start);
+    if (resources.isReady())
+        start();
 }

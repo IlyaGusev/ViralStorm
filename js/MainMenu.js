@@ -22,6 +22,14 @@ var hide_help = function() {
 	document.getElementById ("help-screen").style.display = 'none';
 }
 
+var show_status = function() {
+    document.getElementById ("status-screen").style.display = 'block';
+}
+
+var hide_status = function() {
+    document.getElementById ("status-screen").style.display = 'none';
+}
+
 var mainscreen;
 var start = function(){
     document.getElementById ("start-screen").style.display = 'none';
@@ -29,14 +37,9 @@ var start = function(){
 }
 
 if (bStart.addEventListener)
-    bStart.addEventListener ("click", start, false);
+    bStart.addEventListener ("click", start_click, false);
 else if (bStart.attachEvent)
     bStart.attachEvent ("onclick", start_click);
-
-if (bStart.addEventListener)
-	bStart.addEventListener ("click", start_click, false);
-else if (bStart.attachEvent)
-	bStart.attachEvent ("onclick", start_click);
 
 if (bAuthors.addEventListener) 
 	bAuthors.addEventListener ("click", show_authors, false);

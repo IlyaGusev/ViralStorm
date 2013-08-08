@@ -45,7 +45,11 @@ MainScreen.prototype.new_wave_hide = function () {
     this.shop = false;
     for (var i = 0; i < waves[this.wave_num].length; ++i)
         this.wave.gates.push ([waves[this.wave_num][i][0],new Metronome(waves[this.wave_num][i][1], waves[this.wave_num][i][2])]);
+
     this.lastTime = Date.now();
+
+    show_status();
+    this.update_status();
     this.loop();	
 }
 
@@ -58,6 +62,7 @@ MainScreen.prototype.loop = function(){
         this.render (this.curTime - this.lastTime);
         this.update (this.curTime - this.lastTime);
         this.lastTime = this.curTime;
+        this.update_status();
     }
     if (this.shop)
         show_shop();
@@ -92,16 +97,24 @@ MainScreen.prototype.update = function(difftime){
 }
 
 MainScreen.prototype.game_over = function () {
+    hide_status();
     document.getElementById('game-over-screen').style.display = 'block';
-    var arr = document.body.innerHTML = document.body.innerHTML.split("\n");
-    arr.splice (-1)
-    document.body.innerHTML = arr.join("\n");
-    console.log (document.body.innerHTML);
+    var el = document.getElementById('main-screen');
+
+    el.parentNode.removeChild(el);
+    mainscreen = null;
     var self = this;
+
     window.setTimeout(self.to_menu, 2000);
 }
 
 MainScreen.prototype.to_menu = function () {
+
     document.getElementById('game-over-screen').style.display = 'none';
     document.getElementById('start-screen').style.display = 'block';
+}
+
+MainScreen.prototype.update_status = function () {
+    document.getElementById("status-screen").innerHTML = "<p>HP: "+Math.round(this.cell.hp)+"</p>"+
+                                                         "<p>Armor: "+Math.round(this.cell.armor)+"</p>";
 }
