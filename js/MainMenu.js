@@ -57,5 +57,3 @@ if (bAuthorsOK.addEventListener)
 	bAuthorsOK.addEventListener ("click", hide_authors, false);
 else if (bAuthorsOK.attachEvent)
 	bAuthorsOK.attachEvent ("onclick", hide_authors);
-
-

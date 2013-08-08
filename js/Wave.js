@@ -1,7 +1,6 @@
 "use strict";
 
-function Wave ()
-{
+function Wave (){
     this.gates = []; //Array of pairs  <type, Metronome>
     this.duration = 20000;
     this.time = 0;
