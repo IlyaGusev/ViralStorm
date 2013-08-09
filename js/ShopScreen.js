@@ -9,7 +9,6 @@ function show_shop () {
 
 function close_shop () {
     shopscreen.style.display = "none";
-    show_status();
     mainscreen.wave_num++;
     mainscreen.new_wave ();
 }

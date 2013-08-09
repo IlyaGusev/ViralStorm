@@ -5,11 +5,11 @@ function Cell(x, y){
     this.hp = this.maxHp = 50;
     this.armor = this.maxArmor = 0;
     this.buildings = [];
-    this.sprite = new Sprite('img/cell.png', [0, 0], [102,100]);
-//    this.buildings.push(new Sprite('img/cell.png', [306, 0], [102,100]));
-//    this.buildings.push(new Sprite('img/cell.png', [612, 0], [102,100]));
-//    this.buildings.push(new Sprite('img/cell.png', [918, 0], [102,100]));
-//    this.buildings.push(new Sprite('img/cell.png', [1224, 0], [102,100]));
+    this.sprite = new Sprite('img/cell.png', [0, 0], [120,120]);
+//    this.buildings.push(new Sprite('img/cell.png', [360, 0], [120,120]));
+//    this.buildings.push(new Sprite('img/cell.png', [720, 0], [120,120]));
+//    this.buildings.push(new Sprite('img/cell.png', [1080, 0], [120,120]));
+//    this.buildings.push(new Sprite('img/cell.png', [1440, 0], [120,120]));
 }
 Cell.prototype = {
     draw : function(ctx){
