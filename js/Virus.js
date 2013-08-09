@@ -16,9 +16,9 @@ function Virus (x, y, rotation, type) {
             this.sprite=new Sprite('img/virus1.png', [0,0], [26,30], 15, [0, 1, 2, 1]);
             break;
         case '2':
-            this.speed = 100;
+            this.speed = 200;
             this.maxHp = this.hp = 30;
-            this.damage = 20;
+            this.damage = 1500;
             this.abilities = {kamikadze: true};
             this.sprite=new Sprite('img/virus2.png', [0,0], [26,30], 15, [0, 1, 2, 1]);
             break;
@@ -31,22 +31,18 @@ Virus.prototype.draw = function(ctx, dt){
 }
 
 Virus.prototype.update = function (mouse, dt) {
-    if ((this.sprite.size[0] + mainscreen.cell.sprite.size[0] >= 2 * Math.abs (this.pos[0] - mainscreen.cell.pos[0])) &&
-        (this.sprite.size[1] + mainscreen.cell.sprite.size[1] >= 2 * Math.abs (this.pos[1] - mainscreen.cell.pos[1]))) {
+    var cp =mainscreen.cell.pos;
+    if (Math.sqrt((this.pos[0]-cp[0])*(this.pos[0]-cp[0])+(this.pos[1]-cp[1])*(this.pos[1]-cp[1]))<=
+        mainscreen.cell.sprite.size[0]/2+this.sprite.size[1]/2) {
         if (mainscreen.cell.armor == 0)
             mainscreen.cell.hp -= this.damage * (dt/1000);
         else mainscreen.cell.armor -= this.damage * (dt/1000)* 1.5;
-
         if ('kamikadze' in this.abilities){
             this.alive = false;
         }
     } else {
-        switch (this.rotation) {
-            case   0: this.pos[1] += this.speed*(dt/1000); break;
-            case  90: this.pos[0] -= this.speed*(dt/1000); break;
-            case 180: this.pos[1] -= this.speed*(dt/1000); break;
-            case 270: this.pos[0] += this.speed*(dt/1000); break;
-        }
+        this.pos[0] += -this.speed*Math.sin((this.rotation).degree())*(dt/1000);
+        this.pos[1] += this.speed*Math.cos((this.rotation).degree())*(dt/1000);
     }
     //Mouse clicks handling. Geometry on http://zhukovsd.blogspot.ru/2010/04/blog-post.html
     if (mouse.pressed){
