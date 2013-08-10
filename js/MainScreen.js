@@ -80,14 +80,13 @@ MainScreen.prototype.render = function(difftime){
 
 MainScreen.prototype.update = function(difftime){
     this.wave.update (difftime);
-    if (this.wave.finished){
-        this.enemies.splice(0, this.enemies.length);
+    if (this.wave.finished && this.enemies.length == 0){
         this.shop = true;
     }
     for (var i = 0; i < this.enemies.length; ++i) {
         this.enemies[i].update(this.mouse, difftime);
         if (!this.enemies[i].alive) {
-            this.enemies[i]=null;
+            this.enemies[i] = null;
             this.enemies.splice(i, 1);
             --i;
         }
@@ -101,7 +100,7 @@ MainScreen.prototype.game_over = function () {
     document.getElementById('game-over-screen').style.display = 'block';
     var el = document.getElementById('main-screen');
 
-    el.parentNode.removeChild(el);
+    body.removeChild(el);
     mainscreen = null;
     var self = this;
 

@@ -31,6 +31,8 @@ Wave.prototype.update = function (dt) {
                     console.log(rot);
                 if (this.gates[i][0][0] == 'v')
                     enemy = new Virus(pos[0], pos[1], rot*10, this.gates[i][0].substr(2));
+                if (this.gates[i][0][0] == 'b')
+                    enemy = new Bacteria(pos[0], pos[1], rot*10, this.gates[i][0].substr(2));
                 mainscreen.enemies.push(enemy);
             }
         }
