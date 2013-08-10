@@ -14,7 +14,6 @@ function MainScreen(width, height){
 
     this.wave = new Wave();
     this.cell = new Cell (420, 420);
-
     this.init();
 }
 
@@ -47,6 +46,11 @@ MainScreen.prototype.new_wave_hide = function () {
         this.wave.gates.push ([waves[this.wave_num][i][0],new Metronome(waves[this.wave_num][i][1], waves[this.wave_num][i][2])]);
 
     this.lastTime = Date.now();
+    this.pause = false;
+    this.shop = false;
+    this.gameover = false;
+    this.hp = this.maxHp;
+    this.armor = this.maxArmor;
 
     show_status();
     this.update_status();
@@ -72,6 +76,7 @@ MainScreen.prototype.loop = function(){
 
 MainScreen.prototype.render = function(difftime){
     this.ctx.clearRect(0, 0, this.width, this.height);
+
     this.cell.draw(this.ctx);
     for (var i = 0, il=this.enemies.length; i<il; i++){
         this.enemies[i].draw(this.ctx, difftime);
