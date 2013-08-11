@@ -4,7 +4,7 @@ var b_nextwave = document.getElementById ('next-wave');
 
 function show_shop () {
     shopscreen.style.display = "block";
-    hide_status();
+    mainscreen.clear();
 }
 
 function close_shop () {

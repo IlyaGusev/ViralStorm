@@ -52,8 +52,6 @@ MainScreen.prototype.new_wave_hide = function () {
     this.hp = this.maxHp;
     this.armor = this.maxArmor;
 
-    show_status();
-    this.update_status();
     this.loop();	
 }
 
@@ -66,7 +64,6 @@ MainScreen.prototype.loop = function(){
         this.render (this.curTime - this.lastTime);
         this.update (this.curTime - this.lastTime);
         this.lastTime = this.curTime;
-        this.update_status();
     }
     if (this.shop)
         show_shop();
@@ -76,7 +73,7 @@ MainScreen.prototype.loop = function(){
 
 MainScreen.prototype.render = function(difftime){
     this.ctx.clearRect(0, 0, this.width, this.height);
-
+    this.draw_status();
     this.cell.draw(this.ctx);
     for (var i = 0, il=this.enemies.length; i<il; i++){
         this.enemies[i].draw(this.ctx, difftime);
@@ -101,14 +98,13 @@ MainScreen.prototype.update = function(difftime){
 }
 
 MainScreen.prototype.game_over = function () {
-    hide_status();
     document.getElementById('game-over-screen').style.display = 'block';
     var el = document.getElementById('main-screen');
-
-    body.removeChild(el);
+    if (el!=null)
+        el.parentNode.removeChild(el);
     mainscreen = null;
-    var self = this;
 
+    var self = this;
     window.setTimeout(self.to_menu, 2000);
 }
 
@@ -118,7 +114,13 @@ MainScreen.prototype.to_menu = function () {
     document.getElementById('start-screen').style.display = 'block';
 }
 
-MainScreen.prototype.update_status = function () {
-    document.getElementById("status-screen").innerHTML = "<p>HP: "+Math.round(this.cell.hp)+"</p>"+
-                                                         "<p>Armor: "+Math.round(this.cell.armor)+"</p>";
+MainScreen.prototype.draw_status = function(){
+    this.ctx.strokeRect(750, 0, 90, 60);
+    this.ctx.font = "12px Garamond";
+    this.ctx.fillText("HP: "+Math.floor(this.cell.hp),755, 20);
+    this.ctx.fillText("AR: "+Math.floor(this.cell.armor),755, 35);
+    this.ctx.fillText("TE: "+Math.floor((this.wave.duration-this.wave.time)/1000),755, 50);
+}
+MainScreen.prototype.clear = function(){
+    this.ctx.clearRect(0, 0, this.width, this.height);
 }

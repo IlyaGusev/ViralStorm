@@ -27,8 +27,6 @@ Wave.prototype.update = function (dt) {
                     pos=[420+420*Math.tan((rot*10).degree()), 0];
 
                 var enemy;
-                if (pos==undefined)
-                    console.log(rot);
                 if (this.gates[i][0][0] == 'v')
                     enemy = new Virus(pos[0], pos[1], rot*10, this.gates[i][0].substr(2));
                 if (this.gates[i][0][0] == 'b')

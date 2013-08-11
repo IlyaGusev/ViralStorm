@@ -22,14 +22,6 @@ var hide_help = function() {
 	document.getElementById ("help-screen").style.display = 'none';
 }
 
-var show_status = function() {
-    document.getElementById ("status-screen").style.display = 'block';
-}
-
-var hide_status = function() {
-    document.getElementById ("status-screen").style.display = 'none';
-}
-
 var mainscreen;
 var start = function(){
     document.getElementById ("start-screen").style.display = 'none';
