@@ -18,7 +18,7 @@ function Virus (x, y, rotation, type) {
             break;
         case '2':
             this.speed = 150;
-            this.maxHp = this.hp = 30;
+            this.maxHp = this.hp = 1;
             this.damage = 1500;
             this.score = 200;
             this.abilities = {kamikadze: true};
@@ -33,6 +33,21 @@ Virus.prototype.draw = function(ctx, dt){
 	this.sprite.render(ctx, this.pos, this.rotation);
 };
 
+Virus.prototype.deal_damage = function(dt){
+    if (mainscreen.cell.armor <= 0){
+        mainscreen.cell.armor = 0;
+        mainscreen.cell.hp -= this.damage * (dt/1000);
+    }
+    else {
+        if (mainscreen.cell.armor<this.damage * (dt/1000)* 1.5){
+            mainscreen.cell.hp -= (this.damage * (dt/1000)-(mainscreen.cell.armor/1.5));
+            mainscreen.cell.armor = 0;
+        }
+        else
+            mainscreen.cell.armor-=this.damage * (dt/1000)* 1.5;
+    }
+};
+
 Virus.prototype.update = function (mouse, dt) {
     var cp =mainscreen.cell.pos;
     if (Math.sqrt((this.pos[0]-cp[0])*(this.pos[0]-cp[0])+(this.pos[1]-cp[1])*(this.pos[1]-cp[1]))<=
@@ -45,21 +60,13 @@ Virus.prototype.update = function (mouse, dt) {
             else{
                 --this.deathDelay;
                 if (this.deathDelay==0){
-                    if (mainscreen.cell.armor <= 0){
-                        mainscreen.cell.armor = 0;
-                        mainscreen.cell.hp -= this.damage * (dt/1000);
-                    }
-                    else mainscreen.cell.armor -= this.damage * (dt/1000)* 1.5;
+                    this.deal_damage(dt);
                     this.alive = false;
                 }
             }
         }
         else{
-            if (mainscreen.cell.armor <= 0){
-                mainscreen.cell.armor = 0;
-                mainscreen.cell.hp -= this.damage * (dt/1000);
-            }
-            else mainscreen.cell.armor -= this.damage * (dt/1000)* 1.5;
+            this.deal_damage(dt);
         }
     } else {
         this.pos[0] += -this.speed*Math.sin((this.rotation).degree())*(dt/1000);
@@ -67,9 +74,12 @@ Virus.prototype.update = function (mouse, dt) {
     }
     if (mouse.pressed){
         if (testPointInRect(mouse.pos, this.pos, this.sprite.size, this.rotation)) {
-            this.alive = false;
-            mainscreen.score += this.score;
+            this.hp -=26;
             mouse.pressed = false;
         }
+    }
+    if (this.hp<=0){
+        this.alive = false;
+        mainscreen.score += this.score;
     }
 };

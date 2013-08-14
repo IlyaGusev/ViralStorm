@@ -26,6 +26,7 @@ MainScreen.prototype.init = function () {
     canvas.width = this.width;
     this.ctx = canvas.getContext('2d');
     this.mouse = new MouseController(canvas);
+    if (browser()=='Firefox') document.getElementById('main-screen').style.cursor = "auto";
 
     this.new_wave();
 };
@@ -75,11 +76,11 @@ MainScreen.prototype.loop = function(){
 
 MainScreen.prototype.render = function(difftime){
     this.clear();
-    this.draw_status();
     this.cell.draw(this.ctx);
     for (var i = 0, il=this.enemies.length; i<il; i++){
         this.enemies[i].draw(this.ctx, difftime);
     }
+    this.draw_status();
 };
 
 MainScreen.prototype.update = function(difftime){
@@ -123,12 +124,26 @@ MainScreen.prototype.to_menu = function () {
 };
 
 MainScreen.prototype.draw_status = function(){
-    this.ctx.strokeRect(750, 0, 90, 75);
-    this.ctx.font = "12px Garamond";
-    this.ctx.fillText("HP: "+Math.floor(this.cell.hp),755, 20);
-    this.ctx.fillText("AR: "+Math.floor(this.cell.armor),755, 35);
-    this.ctx.fillText("TE: "+Math.floor((this.wave.duration-this.wave.time)/1000),755, 50);
-    this.ctx.fillText("SC: "+this.score, 755, 65);
+    this.ctx.strokeRect(10, 10, 200, 20);
+    this.ctx.fillStyle = "rgba(255,0,0,0.7)";
+    this.ctx.fillRect(10, 10, (this.cell.hp)/this.cell.maxHp*200, 20);
+    this.ctx.font = "14px Garamond";
+    this.ctx.fillStyle = "black";
+    this.ctx.fillText(Math.floor(this.cell.hp)+"/"+Math.floor(this.cell.maxHp), 90, 25);
+
+    this.ctx.strokeRect(10, 35, 200, 20);
+    if (this.maxArmor!=0){
+        this.ctx.fillStyle = "rgba(255,255,0,0.7)";
+        this.ctx.fillRect(10, 35, (this.cell.armor)/this.cell.maxArmor*200, 20);
+        this.ctx.font = "14px Garamond";
+        this.ctx.fillStyle = "black";
+        this.ctx.fillText(Math.floor(this.cell.armor)+"/"+Math.floor(this.cell.maxArmor), 90, 50);
+    }
+
+    this.ctx.font = "18px Garamond";
+    this.ctx.fillStyle = "black";
+    this.ctx.fillText("Time elapsed: "+Math.floor((this.wave.duration-this.wave.time)/1000),670, 820);
+    this.ctx.fillText("Score: "+this.score, 705, 40);
 };
 
 MainScreen.prototype.clear = function(){
