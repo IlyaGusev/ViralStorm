@@ -1,4 +1,4 @@
-"use strict"
+"use strict";
 
 function Bacteria(x, y, rotation, type){
     this.pos = [x, y];
@@ -12,6 +12,7 @@ function Bacteria(x, y, rotation, type){
             this.speed = 50;
             this.maxHp = this.hp = 50;
             this.damage = 5;
+            this.score = 200;
             this.cooldown = 1000;
             this.range = 200;
             this.abilities = {};
@@ -53,6 +54,7 @@ Bacteria.prototype = {
         if (mouse.pressed){
             if (testPointInRect(mouse.pos, this.pos, this.spriteInMove.size, this.rotation)) {
                 this.alive = false;
+                mainscreen.score += this.score;
                 mouse.pressed = false;
             }
         }

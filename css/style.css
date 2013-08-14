@@ -1,6 +1,6 @@
-* {
+*{
     -webkit-user-select: none;
-    -moz-user-select: none;
+    -khtml-user-select: none;
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
@@ -26,10 +26,6 @@ html, body {
     text-align: center;
 }
 
-#main-screen : hover{
-    cursor : url(../img/cursor.cur), auto;
-}
-
 #start-screen{
 	background-color: darkblue;
 	margin: auto;
@@ -45,7 +41,7 @@ html, body {
 	display: block;
     text-align: center;
 }
-#help-screen, #authors-screen, #new-wave, #shop, #pause-screen {
+#help-screen, #authors-screen, #new-wave, #pause-screen {
 	text-align: center;
 	margin: auto;
     width: 800px;
@@ -60,7 +56,11 @@ html, body {
 	display:none;
 	z-index: 2;
 }
-#authors-screen button, #help-screen button, #shop next-wave {
+#new-wave{
+   color: red;
+   font-size: 50px;
+}
+#authors-screen button, #help-screen button{
 	position: absolute;
 	bottom:30px;
     right:20px;
@@ -82,3 +82,4 @@ html, body {
     display: none;
     text-align: center;
 }
+

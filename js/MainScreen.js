@@ -11,6 +11,7 @@ function MainScreen(width, height){
     this.pause = false;
     this.shop = false;
     this.gameover = false;
+    this.score = 0;
 
     this.wave = new Wave();
     this.cell = new Cell (420, 420);
@@ -31,10 +32,10 @@ MainScreen.prototype.init = function () {
 
 MainScreen.prototype.new_wave = function () {
     document.getElementById("new-wave").style.display = "block";
-    document.getElementById("new-wave").innerHTML = "Wave " + (this.wave_num+1);
+    document.getElementById("new-wave").innerHTML = "<br><br><br><br><br>"+"Wave " + (this.wave_num+1);
     var self = this;
     window.setTimeout(function() {self.new_wave_hide()}, 2000);
-}
+};
 
 MainScreen.prototype.new_wave_hide = function () {
     document.getElementById("new-wave").style.display = "none";
@@ -42,6 +43,7 @@ MainScreen.prototype.new_wave_hide = function () {
     this.wave.time = 0;
     this.wave.finished = false;
     this.shop = false;
+    this.enemies.splice(0, this.enemies.length);
     for (var i = 0; i < waves[this.wave_num].length; ++i)
         this.wave.gates.push ([waves[this.wave_num][i][0],new Metronome(waves[this.wave_num][i][1], waves[this.wave_num][i][2])]);
 
@@ -49,11 +51,11 @@ MainScreen.prototype.new_wave_hide = function () {
     this.pause = false;
     this.shop = false;
     this.gameover = false;
-    this.hp = this.maxHp;
-    this.armor = this.maxArmor;
+    this.cell.hp = this.cell.maxHp;
+    this.cell.armor = this.cell.maxArmor;
 
     this.loop();	
-}
+};
 
 MainScreen.prototype.loop = function(){
     if (!this.pause && !this.shop && !this.gameover){
@@ -61,41 +63,47 @@ MainScreen.prototype.loop = function(){
         requestAnimationFrame(function(){self.loop();});
 
         this.curTime = Date.now();
-        this.render (this.curTime - this.lastTime);
         this.update (this.curTime - this.lastTime);
+        this.render (this.curTime - this.lastTime);
         this.lastTime = this.curTime;
     }
     if (this.shop)
         show_shop();
     if (this.gameover)
         this.game_over();
-}
+};
 
 MainScreen.prototype.render = function(difftime){
-    this.ctx.clearRect(0, 0, this.width, this.height);
+    this.clear();
     this.draw_status();
     this.cell.draw(this.ctx);
     for (var i = 0, il=this.enemies.length; i<il; i++){
         this.enemies[i].draw(this.ctx, difftime);
     }
-}
+};
 
 MainScreen.prototype.update = function(difftime){
     this.wave.update (difftime);
-    if (this.wave.finished && this.enemies.length == 0){
+    if (this.wave.finished){
         this.shop = true;
     }
-    for (var i = 0; i < this.enemies.length; ++i) {
-        this.enemies[i].update(this.mouse, difftime);
-        if (!this.enemies[i].alive) {
-            this.enemies[i] = null;
-            this.enemies.splice(i, 1);
-            --i;
+    else{
+        if (this.cell.hp<this.cell.maxHp)
+            this.cell.hp+=this.cell.regenHp*(17/1000);
+        if (this.cell.armor<this.cell.maxArmor)
+            this.cell.armor+=this.cell.regenArmor*(17/1000);
+        for (var i = 0; i < this.enemies.length; ++i) {
+            this.enemies[i].update(this.mouse, difftime);
+            if (!this.enemies[i].alive) {
+                this.enemies[i] = null;
+                this.enemies.splice(i, 1);
+                --i;
+            }
         }
+        if (this.cell.hp <= 0)
+            this.gameover = true;
     }
-    if (this.cell.hp <= 0)
-        this.gameover = true;
-}
+};
 
 MainScreen.prototype.game_over = function () {
     document.getElementById('game-over-screen').style.display = 'block';
@@ -106,21 +114,23 @@ MainScreen.prototype.game_over = function () {
 
     var self = this;
     window.setTimeout(self.to_menu, 2000);
-}
+};
 
 MainScreen.prototype.to_menu = function () {
 
     document.getElementById('game-over-screen').style.display = 'none';
     document.getElementById('start-screen').style.display = 'block';
-}
+};
 
 MainScreen.prototype.draw_status = function(){
-    this.ctx.strokeRect(750, 0, 90, 60);
+    this.ctx.strokeRect(750, 0, 90, 75);
     this.ctx.font = "12px Garamond";
     this.ctx.fillText("HP: "+Math.floor(this.cell.hp),755, 20);
     this.ctx.fillText("AR: "+Math.floor(this.cell.armor),755, 35);
     this.ctx.fillText("TE: "+Math.floor((this.wave.duration-this.wave.time)/1000),755, 50);
-}
+    this.ctx.fillText("SC: "+this.score, 755, 65);
+};
+
 MainScreen.prototype.clear = function(){
     this.ctx.clearRect(0, 0, this.width, this.height);
-}
+};

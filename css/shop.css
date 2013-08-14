@@ -1,0 +1,79 @@
+#shop{
+	text-align: center;
+	margin: auto;
+    width: 800px;
+    height: 800px;
+	position: absolute;
+    top: 20px;
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+	background-color: rgba(100, 100, 100, 1);
+	color: white;
+	display:none;
+	z-index: 2;
+}
+
+button::-moz-focus-inner{
+    border: none;
+}
+
+#cell button{
+    width : 100px;
+    height: 100px;
+    -moz-border-radius:14px;
+    -webkit-border-radius:14px;
+    border-radius:14px;
+    border:1px solid #ffaa22;
+    background-color:#6af2ae;
+}
+#cell button:hover{
+    background-color:#1ef589;
+}
+
+#cell button:focus{
+    background-color: lawngreen;
+}
+
+#bBorder{
+    background-image: url(../img/shop_border.png);
+}
+#bRibosome{
+    background-image: url(../img/shop_ribosome.png);
+}
+#bMitohondria{
+    background-image: url(../img/shop_mitohondria.png);
+}
+#bGoldji{
+    background-image: url(../img/shop_goldji.png);
+}
+
+#buy{
+    position: absolute;
+    height: 25px;
+    width: 60px;
+    top: 620px;
+    left: 590px;
+    right: 10px;
+    bottom: 10px;
+}
+
+#cell{
+    margin-left: 60px;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(100, 100, 100, 1);
+}
+#description{
+    width: 500px;
+    height : 200px;
+    background-color: rgba(256, 256, 256, 1);
+    border-style: double;
+    border-color: black;
+    margin-top : 20px;
+    margin-bottom : 20px;
+    margin-left: auto;
+    margin-right: auto;
+    color: black;
+}
+
