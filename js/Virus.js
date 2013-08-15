@@ -49,36 +49,30 @@ Virus.prototype.deal_damage = function(dt){
 };
 
 Virus.prototype.update = function (mouse, dt) {
-    var cp =mainscreen.cell.pos;
-    if (Math.sqrt((this.pos[0]-cp[0])*(this.pos[0]-cp[0])+(this.pos[1]-cp[1])*(this.pos[1]-cp[1]))<=
-        mainscreen.cell.sprite.size[0]/2+this.sprite.size[1]/2) {
-        if ('kamikadze' in this.abilities){
-            if (this.deathDelay==14){
-                this.sprite=new Sprite('img/virus2.png', [0,0], [26,30], 16, [3, 4, 5, 6]);
-                --this.deathDelay;
-            }
-            else{
-                --this.deathDelay;
-                if (this.deathDelay==0){
-                    this.deal_damage(dt);
-                    this.alive = false;
-                }
-            }
-        }
-        else{
-            this.deal_damage(dt);
-        }
-    } else {
-        this.pos[0] += -this.speed*Math.sin((this.rotation).degree())*(dt/1000);
-        this.pos[1] += this.speed*Math.cos((this.rotation).degree())*(dt/1000);
-    }
-    if (mouse.pressed){
-        if (testPointInRect(mouse.pos, this.pos, this.sprite.size, this.rotation)) {
-            this.hp -=26;
-        }
-    }
     if (this.hp<=0){
         this.alive = false;
-        mainscreen.score += this.score;
+    } else {
+        var cp =mainscreen.cell.pos;
+        if (Math.sqrt((this.pos[0]-cp[0])*(this.pos[0]-cp[0])+(this.pos[1]-cp[1])*(this.pos[1]-cp[1]))<=
+            mainscreen.cell.sprite.size[0]/2+this.sprite.size[1]/2) {
+            if ('kamikadze' in this.abilities){
+                if (this.deathDelay==14){
+                    this.sprite=new Sprite('img/virus2.png', [0,0], [26,30], 16, [3, 4, 5, 6]);
+                    --this.deathDelay;
+                } else {
+                    --this.deathDelay;
+                    if (this.deathDelay==0){
+                        this.deal_damage(dt);
+                        this.alive = false;
+                    }
+                }
+            }
+            else{
+                this.deal_damage(dt);
+            }
+        } else {
+            this.pos[0] += -this.speed*Math.sin((this.rotation).degree())*(dt/1000);
+            this.pos[1] += this.speed*Math.cos((this.rotation).degree())*(dt/1000);
+        }
     }
 };

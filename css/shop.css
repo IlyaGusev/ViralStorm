@@ -18,7 +18,7 @@ button::-moz-focus-inner{
     border: none;
 }
 
-#cell button{
+#cell button, #weapon button{
     width : 100px;
     height: 100px;
     -moz-border-radius:14px;
@@ -52,28 +52,49 @@ button::-moz-focus-inner{
     position: absolute;
     height: 25px;
     width: 60px;
-    top: 615px;
-    left: 585px;
     right: 10px;
     bottom: 10px;
 }
 
 #cell{
-    margin-left: 60px;
+    position: absolute;
     width: 300px;
     height: 300px;
     background-color: rgba(100, 100, 100, 1);
+    top: 110px;
+    left: 100px;
+    right: 10px;
+    bottom: 10px;
 }
+
+#weapon{
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background-color: rgba(100, 100, 100, 1);
+    top: 110px;
+    left: 400px;
+    right: 10px;
+    bottom: 10px;
+}
+
 #description{
+    position: absolute;
     width: 500px;
     height : 200px;
     background-color: rgba(256, 256, 256, 1);
     border-style: double;
     border-color: black;
-    margin-top : 20px;
-    margin-bottom : 20px;
-    margin-left: auto;
-    margin-right: auto;
+    top: 420px;
+    left: 150px;
+    right: 10px;
+    bottom: 10px;
     color: black;
+}
+
+#next-wave{
+    position: absolute;
+    top: 640px;
+    left: 340px;
 }
 

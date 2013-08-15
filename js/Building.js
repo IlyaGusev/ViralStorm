@@ -3,21 +3,21 @@ function Building(type, level)
     this.type = type;
     this.level = level;
     this.maxLevel = 3;
-    this.estimate_price();
-    this.draw();
+    this.estimatePrice();
+    this.chooseSprite();
 }
 
 Building.prototype.level_up = function(){
     if (this.level<this.maxLevel){
         this.level++;
-        this.estimate_price();
-        this.draw();
+        this.estimatePrice();
+        this.chooseSprite();
         return true;
     }
     else return false;
 };
 
-Building.prototype.draw = function(){
+Building.prototype.chooseSprite = function(){
     switch (this.type+this.level) {
         case "r1":
             this.sprite = new Sprite ('img/cell.png', [120, 0], [120, 120]);
@@ -60,7 +60,7 @@ Building.prototype.draw = function(){
     }
 };
 
-Building.prototype.estimate_price = function(){
+Building.prototype.estimatePrice = function(){
     switch (this.type+this.level) {
         case "r0":
             this.price = 500;

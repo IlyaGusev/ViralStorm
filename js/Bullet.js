@@ -6,6 +6,8 @@ function Bullet (x, y, rotation, type) {
     this.alive = true;
     switch (type) {
         case 1:
+            this.hp = 5;
+            this.score = 0;
             this.damage = 5;
             this.speed = 250;
             this.sprite = new Sprite ('img/bullet1.png', [0,0], [9, 9], 15, [0, 1]);
