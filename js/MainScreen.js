@@ -53,7 +53,7 @@ MainScreen.prototype = {
         for (var i = 0; i < waves[this.wave_num].length; ++i)
             this.wave.gates.push ([waves[this.wave_num][i][0],new Metronome(waves[this.wave_num][i][1], waves[this.wave_num][i][2])]);
 
-        this.shop = true;
+        this.shop = false;
         this.cell.hp = this.cell.maxHp;
         this.cell.armor = this.cell.maxArmor;
         this.lastTime = Date.now();
