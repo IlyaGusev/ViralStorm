@@ -42,7 +42,7 @@ function addClickEvent(button, func){
         button.attachEvent ("onclick", func);
 }
 
-//Test for mouse clicks handling. Geometry on http://zhukovsd.blogspot.ru/2010/04/blog-post.html
+//Mouse clicks handling. Geometry on http://zhukovsd.blogspot.ru/2010/04/blog-post.html
 function testPointInRect (point, rectpos, rect, rotation) {
     var height = rect[1];
     var width = rect[0];

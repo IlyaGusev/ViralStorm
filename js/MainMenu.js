@@ -30,6 +30,7 @@ var mainscreen;
         resources.load("img/bacteria1.png");
         resources.load("img/cell.png");
         resources.load("img/bullet1.png");
+        resources.load("img/cursor.png");
         resources.onReady(start);
         if (resources.isReady())
             start();

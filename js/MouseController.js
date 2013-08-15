@@ -5,6 +5,9 @@ function MouseController(element) {
     this.element = null;
     this.pos     = [0,0];
     this.pressed = false;
+    this.sprite = new Sprite('img/cursor.png', [0,0], [26,26], 1, [0]);
+    this.spriteShot = new Sprite('img/cursor.png', [0,0], [26,26], 20, [0, 1, 2, 1], 'horizontal', true);
+    this.shot = false;
 
     if (typeof element !== 'undefined') {
         this.watch(element);
@@ -35,5 +38,23 @@ MouseController.prototype = {
     up: function(e) {
         this.move(e);
         this.pressed = false;
+    },
+    draw: function(ctx, dt){
+        if (this.pressed){
+            this.shot = true;
+            this.pressed = false;
+        }
+        if (this.shot){
+            this.spriteShot.update(dt);
+            this.spriteShot.render(ctx, this.pos);
+            if (this.spriteShot.done){
+                this.shot=false;
+                this.spriteShot.reset();
+            }
+        }
+        else{
+            this.sprite.update(dt);
+            this.sprite.render(ctx, this.pos);
+        }
     }
 };

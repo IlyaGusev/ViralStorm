@@ -17,7 +17,7 @@ function show_shop () {
     function close_shop () {
         shopscreen.style.display = "none";
         mainscreen.wave_num++;
-        mainscreen.new_wave ();
+        mainscreen.new_wave_screen();
     }
 
     function buy_connect(){

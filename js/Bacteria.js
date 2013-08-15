@@ -54,7 +54,6 @@ Bacteria.prototype = {
         if (mouse.pressed){
             if (testPointInRect(mouse.pos, this.pos, this.spriteInMove.size, this.rotation)) {
                 this.hp-=26;
-                mouse.pressed = false;
             }
         }
         if (this.hp<=0){
