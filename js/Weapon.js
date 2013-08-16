@@ -29,17 +29,11 @@ Weapon.prototype = {
                     mouse.pressed = false;
                 }
                 if (this.shot){
-                    this.spriteShot.update(dt);
-                    this.spriteShot.render(ctx, mouse.pos);
-                    if (this.spriteShot.done){
-                        this.shot=false;
-                        this.spriteShot.reset();
-                    }
+                    this.shot=false;
                 }
-                else{
-                    this.sprite.update(dt);
-                    this.sprite.render(ctx, mouse.pos);
-                }
+                
+                this.sprite.update(dt);
+                this.sprite.render(ctx, mouse.pos);
                 break;
             default:
                 break;
