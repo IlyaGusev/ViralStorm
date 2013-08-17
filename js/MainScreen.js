@@ -4,9 +4,10 @@ function MainScreen(width, height){
     this.width = width;
     this.height = height;
     this.enemies = [];
+    this.bullets = [];
     this.ctx = null;
     this.mouse = null;
-    this.weapon = new Weapon("standard", 26, 1) ;
+    this.weapon = new Weapon("standard", 26, 60, 1000) ;
     this.wave_num = 0;
 
     this.pause = false;
@@ -84,6 +85,9 @@ MainScreen.prototype = {
         for (var i = 0, il=this.enemies.length; i<il; i++){
             this.enemies[i].draw(this.ctx, this.diffTime);
         }
+        for (var i = 0, il=this.bullets.length; i<il; i++){
+            this.bullets[i].draw(this.ctx, this.diffTime);
+        }
         this.draw_status();
         this.weapon.draw(this.ctx, this.diffTime, this.mouse);
     },
@@ -94,13 +98,18 @@ MainScreen.prototype = {
             this.shop = true;
         }
         else{
-            if (this.cell.hp<this.cell.maxHp)
-                this.cell.hp+=this.cell.regenHp*(17/1000);
-            if (this.cell.armor<this.cell.maxArmor)
-                this.cell.armor+=this.cell.regenArmor*(17/1000);
-            this.weapon.update(this.mouse);
+            this.cell.update(this.diffTime);
+            this.weapon.update(this.diffTime, this.mouse);
+            for (var i = 0; i < this.bullets.length; ++i) {
+                this.bullets[i].update(this.diffTime);
+                if (!this.bullets[i].alive) {
+                    this.bullets[i] = null;
+                    this.bullets.splice(i, 1);
+                    --i;
+                }
+            }
             for (var i = 0; i < this.enemies.length; ++i) {
-                this.enemies[i].update(this.mouse, this.diffTime);
+                this.enemies[i].update(this.diffTime);
                 if (!this.enemies[i].alive) {
                     this.score+=this.enemies[i].score;
                     this.enemies[i] = null;

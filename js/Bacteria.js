@@ -35,7 +35,7 @@ Bacteria.prototype = {
             this.sprite.render(ctx, this.pos, this.rotation);
         }
     },
-    update : function (mouse, dt) {
+    update : function (dt) {
         if (this.hp<=0){
             this.alive = false;
         } else {
@@ -43,7 +43,7 @@ Bacteria.prototype = {
             if (this.inBattle) {
                 this.met.update(dt);
                 if (this.met.getTick())
-                    mainscreen.enemies.push (new Bullet (this.pos[0], this.pos[1], this.rotation, this.bulletType));
+                    mainscreen.bullets.push (new Bullet (this.pos[0], this.pos[1], this.rotation, this.bulletType, this.damage));
             } else {
                 if (Math.sqrt((this.pos[0]-cp[0])*(this.pos[0]-cp[0])+(this.pos[1]-cp[1])*(this.pos[1]-cp[1]))<=
                     mainscreen.cell.sprite.size[0]/2+this.sprite.size[1]/2+this.range) {

@@ -48,7 +48,7 @@ Virus.prototype.deal_damage = function(dt){
     }
 };
 
-Virus.prototype.update = function (mouse, dt) {
+Virus.prototype.update = function (dt) {
     if (this.hp<=0){
         this.alive = false;
     } else {

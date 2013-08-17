@@ -16,6 +16,13 @@ Cell.prototype = {
             if (this.buildings[i].sprite!=null)
                 this.buildings[i].sprite.render(ctx, this.pos);
         }
+    },
+
+    update: function(dt){
+        if (this.hp<this.maxHp)
+            this.hp+=this.regenHp*(dt/1000);
+        if (this.armor<this.maxArmor)
+            this.armor+=this.regenArmor*(dt/1000);
     }
 };
 
