@@ -1,8 +1,9 @@
-function Weapon(name, dmg, range, delay){
+function Weapon(name, dmg, unlocked, delay, range){
     this.name = name;
     this.damage = dmg;
-    this.range = range || 0;
+    this.unlocked = unlocked || true;
     this.delay = delay || 0;
+    this.range = range || 0;
 
     this.shot = false;
 

@@ -13,6 +13,9 @@ function show_shop () {
     var bGoldji = document.getElementById ('bGoldji');
     var bMitohondria = document.getElementById ('bMitohondria');
     var bBorder = document.getElementById ('bBorder');
+//    var bStandard = document.getElementById ('bStandard');
+//    var bExplosion = document.getElementById ('bExplosion');
+//    var bBullets = document.getElementById ('bBullets');
 
     function close_shop () {
         shopscreen.style.display = "none";
@@ -84,6 +87,11 @@ function show_shop () {
         buy_connect();
         current_button='4';
     }
+
+//    function standard_description(){
+//        document.getElementById("description").innerHTML = "<h3>Standard weapon</h3>"+
+//            "<p>Current damage: "+mainscreen.currentWeapon.damage+"</p><br>";
+//    }
 
     addClickEvent(bRibosome, ribosome_description);
     addClickEvent(bGoldji, goldji_description);

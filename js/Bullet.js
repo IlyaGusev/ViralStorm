@@ -12,8 +12,8 @@ function Bullet (x, y, rotation, type, damage) {
             this.sprite = new Sprite ('img/bullet1.png', [0,0], [9, 9], 15, [0, 1]);
             break;
         case 2:
-            this.damage = damage || 26;
-            this.speed = 150;
+            this.damage = damage || 52;
+            this.speed = 300;
             this.sprite = new Sprite ('img/bullet1.png', [0,0], [9, 9], 15, [0, 1]);
             break;
         default:
@@ -66,20 +66,21 @@ Bullet.prototype = {
                 }
                 break;
             case 2:
+                if (this.pos[0]<0 || this.pos[0]>mainscreen.width || this.pos[1]<0 || this.pos[1]>mainscreen.height){
+                    this.alive = false;
+                    break;
+                }
+                else{
+                    this.pos[0] += -this.speed*Math.sin((this.rotation).degree())*(dt/1000);
+                    this.pos[1] += this.speed*Math.cos((this.rotation).degree())*(dt/1000);
+                }
                 for (var i= 0, il=mainscreen.enemies.length; i<il; i++){
                     var enemy = mainscreen.enemies[i];
-                    if (testRectAndCircleIntersection(enemy.pos, enemy.sprite.size, enemy.rotation, this.pos, this.sprite.size[0]))
+                    if (testRectAndCircleIntersection(enemy.pos, enemy.sprite.size, enemy.rotation, this.pos, this.sprite.size[0]/2))
                     {
                         this.deal_damage(i);
                         this.alive = false;
-                    }
-                    else{
-                        if (this.pos[0]<0 || this.pos[0]>mainscreen.width || this.pos[1]<0 || this.pos[1]>mainscreen.height)
-                            this.alive = false;
-                        else{
-                            this.pos[0] += -this.speed*Math.sin((this.rotation).degree())*(dt/1000);
-                            this.pos[1] += this.speed*Math.cos((this.rotation).degree())*(dt/1000);
-                        }
+                        break;
                     }
                 }
                 break;

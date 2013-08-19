@@ -205,6 +205,10 @@ function testRectAndCircleIntersection (rectCenter, rect, rectRotation, circleCe
     var up = pts[2];
     var right = pts[3];
 
+    if (right<circleCenter[0]-circleRadius || left>circleCenter[0]+circleRadius ||
+        down<circleCenter[1]-circleRadius || up>circleCenter[1]+circleRadius)
+    return false;
+
     if (testSegmentAndCircleIntersection(circleCenter, circleRadius, new Segment(down, left)).length>0)
         return true;
     if (testSegmentAndCircleIntersection(circleCenter, circleRadius, new Segment(left, up)).length>0)
@@ -221,6 +225,10 @@ function testCircleContainsRect (rectCenter, rect, rectRotation, circleCenter, c
     var left = pts[1];
     var up = pts[2];
     var right = pts[3];
+
+    if (right<circleCenter[0]-circleRadius || left>circleCenter[0]+circleRadius ||
+        down<circleCenter[1]-circleRadius || up>circleCenter[1]+circleRadius)
+        return false;
 
     if (Math.pow((down[1]-circleCenter[1]),2)+Math.pow(down[0]-circleCenter[0], 2)<=Math.pow(circleRadius, 2) &&
         Math.pow((left[1]-circleCenter[1]),2)+Math.pow(left[0]-circleCenter[0], 2)<=Math.pow(circleRadius, 2) &&

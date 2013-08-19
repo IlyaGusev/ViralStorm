@@ -7,7 +7,10 @@ function MainScreen(width, height){
     this.bullets = [];
     this.ctx = null;
     this.mouse = null;
-    this.weapon = new Weapon("standard", 26, 60, 1000) ;
+    this.weapons = [new Weapon("standard", 26),
+                    new Weapon("explosion", 52, false, 1000, 50),
+                    new Weapon("bullets", false, 52, 1000)];
+    this.currentWeapon = this.weapons[0];
     this.wave_num = 0;
 
     this.pause = false;
@@ -35,6 +38,7 @@ MainScreen.prototype = {
         canvas.width = this.width;
         this.ctx = canvas.getContext('2d');
         this.mouse = new MouseController(canvas);
+        this.weapons.push();
 
         this.new_wave_screen();
     },
@@ -51,6 +55,7 @@ MainScreen.prototype = {
 
         this.wave = new Wave();
         this.enemies.splice(0, this.enemies.length);
+        this.bullets.splice(0, this.bullets.length);
         for (var i = 0; i < waves[this.wave_num].length; ++i)
             this.wave.gates.push ([waves[this.wave_num][i][0],new Metronome(waves[this.wave_num][i][1], waves[this.wave_num][i][2])]);
 
@@ -89,7 +94,7 @@ MainScreen.prototype = {
             this.bullets[i].draw(this.ctx, this.diffTime);
         }
         this.draw_status();
-        this.weapon.draw(this.ctx, this.diffTime, this.mouse);
+        this.currentWeapon.draw(this.ctx, this.diffTime, this.mouse);
     },
 
     update: function(){
@@ -99,7 +104,7 @@ MainScreen.prototype = {
         }
         else{
             this.cell.update(this.diffTime);
-            this.weapon.update(this.diffTime, this.mouse);
+            this.currentWeapon.update(this.diffTime, this.mouse);
             for (var i = 0; i < this.bullets.length; ++i) {
                 this.bullets[i].update(this.diffTime);
                 if (!this.bullets[i].alive) {
